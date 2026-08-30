@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WhatsApp / Excel in → a table you can export — Kodku</title>
+  <meta name="description" content="Client-side demo: paste a WhatsApp export or CSV, search it, export a clean table. The kind of one-workflow tool Kodku ships as the $800 slice.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;1,9..144,500&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="wrap">
+    <header class="site-header">
+      <a class="wordmark" href="index.html">Kodku</a>
+      <nav class="nav" aria-label="Primary">
+        <a href="index.html">Offers</a>
+        <a href="mailto:info@kodku.com">info@kodku.com</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="lede">
+        <p class="kicker">$800 slice · client-side only</p>
+        <h1>WhatsApp / Excel in → a table you can export</h1>
+        <p class="demo-caption">The kind of one-workflow tool Kodku ships as the $800 slice. Paste a chat export or a spreadsheet dump; nothing leaves this browser.</p>
+      </section>
+
+      <div class="panel">
+        <label class="field" for="source">
+          Paste WhatsApp export or CSV
+          <textarea id="source" spellcheck="false" aria-describedby="source-hint"></textarea>
+          <span class="hint" id="source-hint">WhatsApp lines look like [30/08/2026, 7:02 PM] Amy: 3 cartons to TST. CSV needs a header row.</span>
+        </label>
+
+        <div class="file-row">
+          <label class="field" for="file">
+            Or drop a .txt / .csv
+            <input id="file" type="file" accept=".txt,.csv,text/plain,text/csv">
+          </label>
+        </div>
+
+        <p class="samples">
+          Samples:
+          <a href="#source" id="load-wa">WhatsApp</a>
+          <a href="#source" id="load-csv">CSV</a>
+        </p>
+
+        <label class="field" for="filter">
+          Filter rows
+          <input id="filter" type="search" placeholder="Name, place, status…" autocomplete="off">
+        </label>
+
+        <div class="toolbar">
+          <button type="button" class="btn" id="export">Export CSV</button>
+          <button type="button" class="btn btn-ghost" id="reset">Reset to sample</button>
+          <p class="status" id="status" aria-live="polite"></p>
+        </div>
+
+        <div class="table-wrap" role="region" aria-label="Parsed rows" tabindex="0">
+          <table id="table">
+            <thead></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      Kodku · Hong Kong · info@kodku.com · evenings/weekends
+    </footer>
+  </div>
+  <script src="demo.js"></script>
+</body>
+</html>
