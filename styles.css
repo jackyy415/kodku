@@ -274,11 +274,32 @@ h1{
 .crew-list li{
   display:flex;align-items:center;gap:0.5rem;
   padding:0.48rem 0.7rem;font-size:0.72rem;
+  min-width:0;
 }
 .crew-list li.is-on{background:rgba(76,224,192,.06)}
-.crew-list strong{display:block;font-weight:500;font-size:0.74rem}
-.crew-list em{display:block;font-style:normal;color:#8b919c;font-size:0.64rem}
-.crew-list .pill{margin-left:auto}
+.crew-list li > div{
+  min-width:0;
+  flex:1 1 auto;
+  overflow:hidden;
+}
+.crew-list strong{
+  display:block;
+  font-weight:500;
+  font-size:0.74rem;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.crew-list em{
+  display:block;
+  font-style:normal;
+  color:#8b919c;
+  font-size:0.64rem;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.crew-list .pill{margin-left:auto;flex:none;white-space:nowrap}
 .map{padding:0.7rem 0.7rem 0.8rem}
 .map-label{margin:0 0 0.5rem;font-size:0.62rem;letter-spacing:0.08em;text-transform:uppercase;color:#6d7380}
 .map-grid{
@@ -304,7 +325,7 @@ h1{
 .map-grid .is-now{border-color:#4ce0c0;color:#eceef2}
 
 /* Rest of page */
-.what,.how,.foot-cta{
+.what,.how,.scope,.foot-cta{
   padding:0 4vw 3.5rem;
   max-width:46rem;
   margin:0 auto;
@@ -342,6 +363,28 @@ footer{
 footer a{color:#9aa0ab;text-decoration:none}
 footer a:hover{color:#eceef2}
 
+
+.scope dl{margin:0}
+.scope dl > div{
+  display:grid;
+  grid-template-columns:6.5rem 1fr;
+  gap:0.75rem;
+  padding:0.7rem 0;
+  border-top:1px solid #1e232c;
+  font-size:0.98rem;
+}
+.scope dl > div:last-child{border-bottom:1px solid #1e232c}
+.scope dt{
+  font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  font-size:0.72rem;
+  font-weight:500;
+  letter-spacing:0.06em;
+  text-transform:uppercase;
+  color:#8b919c;
+  padding-top:0.18rem;
+}
+.scope dd{margin:0;color:#eceef2}
+
 @media (max-width:1080px){
   .hero{grid-template-columns:1fr;padding-top:3rem}
   .win-body{grid-template-columns:108px minmax(0,1fr)}
@@ -359,5 +402,5 @@ footer a:hover{color:#eceef2}
 @media (max-width:640px){
   html{font-size:15px}
   .hero{padding:2.5rem 5vw 2.5rem}
-  .what,.how,.foot-cta{padding-left:5vw;padding-right:5vw}
+  .what,.how,.scope,.foot-cta{padding-left:5vw;padding-right:5vw}
 }
