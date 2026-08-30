@@ -6,3 +6,4 @@ One operational problem, web or mobile, handed over running. If the spec is not 
 
 Site: https://jackyy415.github.io/kodku/
 CTA: info@kodku.com
+Studio note: https://jackyy415.github.io/kodku/studio.html
