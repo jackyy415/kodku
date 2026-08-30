@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://jackyy415.github.io/kodku/sitemap.xml
