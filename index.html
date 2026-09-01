@@ -58,270 +58,312 @@
         </div>
       </div>
 
-      <div class="stage" data-studio="kodku-dispatch-v2" aria-label="Kodku Dispatch product frames">
-        <!-- Frame 1: dispatch board -->
-        <article class="win win-board">
-          <div class="win-bar">
-            <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
-            <span class="win-title">Kodku Dispatch</span>
-            <span class="win-live"><b></b> live · HKT</span>
-          </div>
-          <div class="win-body">
-            <aside class="side">
-              <p class="side-brand">Dispatch</p>
-              <nav>
-                <span class="nav-item">Overview</span>
-                <span class="nav-item is-on">Jobs</span>
-                <span class="nav-item">Crew</span>
-                <span class="nav-item">Sites</span>
-                <span class="nav-item">Reports</span>
-              </nav>
-              <div class="side-foot">
-                <span class="avatar">NS</span>
-                <div>
-                  <strong>Ng Sze</strong>
-                  <em>Dispatcher · HQ</em>
-                </div>
-              </div>
-            </aside>
-            <div class="pane">
-              <div class="pane-head">
-                <div>
-                  <h3>Jobs · Sun 30 Aug</h3>
-                  <p>Kowloon &amp; Hong Kong Island · shift 14:00–22:00</p>
-                </div>
-                <div class="stats">
-                  <span><b>14</b> open</span>
-                  <span><b>6</b> on site</span>
-                  <span><b>3</b> en route</span>
-                </div>
-              </div>
-              <div class="filters">
-                <span class="chip is-on">All trades</span>
-                <span class="chip">HVAC</span>
-                <span class="chip">Lift</span>
-                <span class="chip">Electrical</span>
-                <span class="search">Search jobs, sites, techs</span>
-              </div>
-              <table class="grid">
-                <thead>
-                  <tr>
-                    <th>Job</th>
-                    <th>Site</th>
-                    <th>Trade</th>
-                    <th>Tech</th>
-                    <th>Status</th>
-                    <th>SLA</th>
-                    <th>Updated</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr class="is-sel">
-                    <td class="mono">KD-1842</td>
-                    <td>Pacific Place, Admiralty</td>
-                    <td>HVAC</td>
-                    <td><span class="who"><i class="av">CY</i> Chan Yiu</span></td>
-                    <td><span class="pill pill-live">On site</span></td>
-                    <td class="mono warn">26m</td>
-                    <td class="mono dim">21:04</td>
-                  </tr>
-                  <tr>
-                    <td class="mono">KD-1841</td>
-                    <td>Langham Place, Mong Kok</td>
-                    <td>Lift</td>
-                    <td><span class="who"><i class="av av-2">WL</i> Wong Lai</span></td>
-                    <td><span class="pill pill-route">En route</span></td>
-                    <td class="mono">48m</td>
-                    <td class="mono dim">20:51</td>
-                  </tr>
-                  <tr>
-                    <td class="mono">KD-1838</td>
-                    <td>APM, Kwun Tong</td>
-                    <td>Fire panel</td>
-                    <td><span class="who"><i class="av av-3">KT</i> Ko Tsz</span></td>
-                    <td><span class="pill pill-wait">Queued</span></td>
-                    <td class="mono">1h 12m</td>
-                    <td class="mono dim">20:22</td>
-                  </tr>
-                  <tr>
-                    <td class="mono">KD-1831</td>
-                    <td>Citygate, Tung Chung</td>
-                    <td>Plumbing</td>
-                    <td><span class="who"><i class="av av-4">IK</i> Ip Ka</span></td>
-                    <td><span class="pill pill-live">On site</span></td>
-                    <td class="mono warn">12m</td>
-                    <td class="mono dim">21:08</td>
-                  </tr>
-                  <tr>
-                    <td class="mono">KD-1836</td>
-                    <td>New Town Plaza, Sha Tin</td>
-                    <td>Electrical</td>
-                    <td><span class="who"><i class="av av-5">TM</i> Tam Mei</span></td>
-                    <td><span class="pill pill-done">Done</span></td>
-                    <td class="mono dim">—</td>
-                    <td class="mono dim">19:40</td>
-                  </tr>
-                  <tr>
-                    <td class="mono">KD-1833</td>
-                    <td>Harbour City, Tsim Sha Tsui</td>
-                    <td>HVAC</td>
-                    <td><span class="who"><i class="av">CY</i> Chan Yiu</span></td>
-                    <td><span class="pill pill-done">Done</span></td>
-                    <td class="mono dim">—</td>
-                    <td class="mono dim">18:15</td>
-                  </tr>
-                  <tr>
-                    <td class="mono">KD-1829</td>
-                    <td>Times Square, Causeway Bay</td>
-                    <td>BMS</td>
-                    <td><span class="who"><i class="av av-2">WL</i> Wong Lai</span></td>
-                    <td><span class="pill pill-done">Done</span></td>
-                    <td class="mono dim">—</td>
-                    <td class="mono dim">17:02</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </article>
+      <div class="portfolio" id="portfolio" data-accent="blue">
+        <div class="portfolio-tabs" role="tablist" aria-label="Selected work">
+          <!-- Real slot — replace copy when client brief is ready -->
+          <button class="portfolio-tab" role="tab" id="tab-logistics" aria-selected="true" aria-controls="panel-logistics" data-accent="blue"
+            data-problem="Cross-dock handoffs tracked in a shared Excel file with no photo proof or timestamps."
+            data-users="Two warehouse leads, eight drivers on phones."
+            data-build="Load handoff board, photo capture, driver check-in. Web + mobile."
+            data-handover="Running app, logins, one-page runbook — your people operate it."
+            data-terms="3 weeks. $2,500 USD. Written scope before we build."
+            data-meta-problem="Cross-dock handoffs tracked in Excel with no proof of receipt."
+            data-meta-users="Two warehouse leads, eight drivers on phones.">
+            <span class="portfolio-tab-tag">Logistics</span>
+            <span class="portfolio-tab-name">Load handoff</span>
+          </button>
+          <!-- Real slot — replace copy when client brief is ready -->
+          <button class="portfolio-tab" role="tab" id="tab-retail" aria-selected="false" aria-controls="panel-retail" tabindex="-1" data-accent="violet"
+            data-problem="Store opening checklists done on paper; HQ only finds gaps after a failed audit."
+            data-users="Twelve store managers, one regional ops lead."
+            data-build="Daily checklist app, photo sign-off, exception alerts. Web + tablet."
+            data-handover="Running app, logins, one-page runbook — your people operate it."
+            data-terms="3 weeks. $2,500 USD. Written scope before we build."
+            data-meta-problem="Opening checklists on paper — HQ finds gaps after a failed audit."
+            data-meta-users="Twelve store managers, one regional ops lead.">
+            <span class="portfolio-tab-tag">Retail</span>
+            <span class="portfolio-tab-name">Store checklist</span>
+          </button>
+          <button class="portfolio-tab" role="tab" id="tab-dispatch" aria-selected="false" aria-controls="panel-dispatch" tabindex="-1" data-accent="teal"
+            data-problem="HVAC jobs still dispatched on WhatsApp and a shared spreadsheet."
+            data-users="One dispatcher at HQ, five techs on phones."
+            data-build="Live job board, job status, crew check-in. Web + mobile."
+            data-handover="Running app, logins, one-page runbook — your people operate it."
+            data-terms="3 weeks. $2,500 USD. Written scope before we build."
+            data-meta-problem="HVAC jobs dispatched on WhatsApp and a shared spreadsheet."
+            data-meta-users="One dispatcher at HQ, five techs on phones.">
+            <span class="portfolio-tab-tag">Facilities</span>
+            <span class="portfolio-tab-name">Field dispatch</span>
+          </button>
+          <button class="portfolio-tab" role="tab" id="tab-queue" aria-selected="false" aria-controls="panel-queue" tabindex="-1" data-accent="amber"
+            data-problem="Walk-in queue managed on a whiteboard; staff can't see wait times from the floor."
+            data-users="Two front-desk staff, four practitioners, patients on phones."
+            data-build="Live queue board, SMS-ready status, practitioner view. Web + kiosk."
+            data-handover="Running app, logins, one-page runbook — your people operate it."
+            data-terms="3 weeks. $2,500 USD. Written scope before we build."
+            data-meta-problem="Walk-in queue on a whiteboard — no wait times from the floor."
+            data-meta-users="Two front-desk staff, four practitioners, patients on phones.">
+            <span class="portfolio-tab-tag">Healthcare</span>
+            <span class="portfolio-tab-name">Walk-in queue</span>
+          </button>
+        </div>
 
-        <div class="frame-row">
-          <!-- Frame 2: job detail -->
-          <article class="win win-job">
-            <div class="win-bar">
-              <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
-              <span class="win-title">Job KD-1842</span>
-              <span class="pill pill-live">On site</span>
-            </div>
-            <div class="job">
-              <div class="job-hero">
-                <div>
-                  <p class="kicker">P1 · HVAC · Tower 1 plant</p>
-                  <h3>Pacific Place, Admiralty</h3>
-                  <p class="addr">88 Queensway · B2 plant room · ask Mr. Cheung</p>
-                </div>
-                <div class="sla">
-                  <span>SLA left</span>
-                  <strong class="mono">26:14</strong>
-                </div>
+        <div class="portfolio-stage">
+          <article class="portfolio-panel is-active" role="tabpanel" id="panel-logistics" aria-labelledby="tab-logistics">
+            <div class="win">
+              <div class="win-bar">
+                <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                <span class="win-title">Load handoff · Kwai Chung</span>
+                <span class="win-live"><b></b> 6 loads today</span>
               </div>
-              <div class="assign">
-                <span class="av">CY</span>
-                <div>
-                  <strong>Chan Yiu</strong>
-                  <em>Assigned 20:31 · shift 14:00–22:00</em>
+              <div class="preview preview-logistics">
+                <div class="preview-head">
+                  <div>
+                    <h3>Cross-dock · Tue 1 Sep</h3>
+                    <p>Gate A–C · shift 06:00–14:00</p>
+                  </div>
+                  <div class="stats">
+                    <span><b>4</b> in transit</span>
+                    <span><b>2</b> awaiting sign-off</span>
+                  </div>
                 </div>
-                <span class="pill pill-live">Checked in 21:04</span>
-              </div>
-              <ol class="tl">
-                <li class="is-now">
-                  <span class="mono">21:04</span>
-                  <div>
-                    <strong>On site</strong>
-                    <p>Checked in at B2. Chillers 2 and 3 offline, L22–24 warm.</p>
-                  </div>
-                </li>
-                <li>
-                  <span class="mono">20:47</span>
-                  <div>
-                    <strong>En route</strong>
-                    <p>ETA 18 min via Cross-Harbour Tunnel.</p>
-                  </div>
-                </li>
-                <li>
-                  <span class="mono">20:31</span>
-                  <div>
-                    <strong>Assigned</strong>
-                    <p>Dispatcher Ng Sze · parts loaded at Kwun Tong depot.</p>
-                  </div>
-                </li>
-                <li>
-                  <span class="mono">20:22</span>
-                  <div>
-                    <strong>Queued</strong>
-                    <p>Tenant ticket: AHU trip, no cooling on 22–24.</p>
-                  </div>
-                </li>
-              </ol>
-              <div class="parts">
-                <span>Parts on van</span>
-                <b>2× belt 5PK</b>
-                <b>1× contactor</b>
-                <b>1× filter set</b>
+                <ul class="handoff-list">
+                  <li class="is-active">
+                    <span class="mono">LD-4412</span>
+                    <div>
+                      <strong>Ma On Shan → Kwai Chung</strong>
+                      <em>Driver Lam · 14 pallets · ETA 09:12</em>
+                    </div>
+                    <span class="pill pill-route">En route</span>
+                  </li>
+                  <li>
+                    <span class="mono">LD-4408</span>
+                    <div>
+                      <strong>Gate B · unload bay 3</strong>
+                      <em>Driver Cheung · photo uploaded 08:47</em>
+                    </div>
+                    <span class="pill pill-live">At dock</span>
+                  </li>
+                  <li>
+                    <span class="mono">LD-4401</span>
+                    <div>
+                      <strong>Signed · warehouse lead Ho</strong>
+                      <em>22 cartons · discrepancy: 0</em>
+                    </div>
+                    <span class="pill pill-done">Complete</span>
+                  </li>
+                  <li>
+                    <span class="mono">LD-4397</span>
+                    <div>
+                      <strong>Pending sign-off</strong>
+                      <em>Driver Ng · 08:31 check-in · no photo yet</em>
+                    </div>
+                    <span class="pill pill-wait">Awaiting</span>
+                  </li>
+                </ul>
               </div>
             </div>
           </article>
 
-          <!-- Frame 3: crew / live list -->
-          <article class="win win-crew">
-            <div class="win-bar">
-              <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
-              <span class="win-title">Field crew · live</span>
-              <span class="win-live"><b></b> 5 on shift</span>
-            </div>
-            <div class="crew">
-              <ul class="crew-list">
-                <li class="is-on">
-                  <span class="av">CY</span>
+          <article class="portfolio-panel" role="tabpanel" id="panel-retail" aria-labelledby="tab-retail">
+            <div class="win">
+              <div class="win-bar">
+                <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                <span class="win-title">Store checklist · Region East</span>
+                <span class="win-live"><b></b> 9 of 12 done</span>
+              </div>
+              <div class="preview preview-retail">
+                <div class="preview-head">
                   <div>
-                    <strong>Chan Yiu</strong>
-                    <em>Pacific Place · KD-1842</em>
+                    <h3>Opening checklist · Tue 1 Sep</h3>
+                    <p>Due by 09:30 · 3 exceptions flagged</p>
                   </div>
-                  <span class="pill pill-live">On site</span>
-                </li>
-                <li>
-                  <span class="av av-2">WL</span>
-                  <div>
-                    <strong>Wong Lai</strong>
-                    <em>Mong Kok · 4.2 km · KD-1841</em>
+                  <div class="stats">
+                    <span><b>75%</b> complete</span>
+                    <span><b>3</b> alerts</span>
                   </div>
-                  <span class="pill pill-route">En route</span>
-                </li>
-                <li>
-                  <span class="av av-4">IK</span>
-                  <div>
-                    <strong>Ip Ka</strong>
-                    <em>Citygate, Tung Chung · KD-1831</em>
-                  </div>
-                  <span class="pill pill-live">On site</span>
-                </li>
-                <li>
-                  <span class="av av-3">KT</span>
-                  <div>
-                    <strong>Ko Tsz</strong>
-                    <em>Kwun Tong depot · next: APM</em>
-                  </div>
-                  <span class="pill pill-wait">Standby</span>
-                </li>
-                <li>
-                  <span class="av av-5">TM</span>
-                  <div>
-                    <strong>Tam Mei</strong>
-                    <em>Last: Sha Tin 19:40</em>
-                  </div>
-                  <span class="pill pill-done">Off shift</span>
-                </li>
-              </ul>
-              <div class="map" aria-hidden="true">
-                <p class="map-label">Hong Kong coverage</p>
-                <div class="map-grid">
-                  <span>Tuen Mun</span>
-                  <span>Tsuen Wan</span>
-                  <span class="hot">Sha Tin <i></i></span>
-                  <span>Tai Po</span>
-                  <span class="hot">Tung Chung <i></i></span>
-                  <span>Kowloon</span>
-                  <span class="hot">Mong Kok <i></i></span>
-                  <span class="hot">Kwun Tong <i></i></span>
-                  <span class="hot is-now">Admiralty <i></i></span>
-                  <span>Central</span>
-                  <span>CWB</span>
-                  <span>TST</span>
                 </div>
+                <ul class="checklist">
+                  <li class="is-done">
+                    <span class="check-icon" aria-hidden="true">✓</span>
+                    <div>
+                      <strong>Causeway Bay · Store 14</strong>
+                      <em>Signed 08:52 · Manager Lee · 12/12 items</em>
+                    </div>
+                    <span class="pill pill-done">Done</span>
+                  </li>
+                  <li class="is-done">
+                    <span class="check-icon" aria-hidden="true">✓</span>
+                    <div>
+                      <strong>Tsim Sha Tsui · Store 07</strong>
+                      <em>Signed 08:41 · Manager Wong · 12/12 items</em>
+                    </div>
+                    <span class="pill pill-done">Done</span>
+                  </li>
+                  <li class="is-alert">
+                    <span class="check-icon" aria-hidden="true">!</span>
+                    <div>
+                      <strong>Mong Kok · Store 22</strong>
+                      <em>Fire exit photo missing · flagged 08:38</em>
+                    </div>
+                    <span class="pill pill-alert">Exception</span>
+                  </li>
+                  <li>
+                    <span class="check-icon" aria-hidden="true">·</span>
+                    <div>
+                      <strong>Sha Tin · Store 09</strong>
+                      <em>In progress · 8/12 items · Manager Chan</em>
+                    </div>
+                    <span class="pill pill-wait">In progress</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+          <article class="portfolio-panel" role="tabpanel" id="panel-dispatch" aria-labelledby="tab-dispatch">
+            <div class="win">
+              <div class="win-bar">
+                <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                <span class="win-title">Field dispatch · HKT</span>
+                <span class="win-live"><b></b> live</span>
+              </div>
+              <div class="preview preview-dispatch">
+                <div class="preview-head">
+                  <div>
+                    <h3>Jobs · Tue 1 Sep</h3>
+                    <p>Kowloon &amp; Hong Kong Island · shift 14:00–22:00</p>
+                  </div>
+                  <div class="stats">
+                    <span><b>14</b> open</span>
+                    <span><b>6</b> on site</span>
+                    <span><b>3</b> en route</span>
+                  </div>
+                </div>
+                <div class="filters">
+                  <span class="chip is-on">All trades</span>
+                  <span class="chip">HVAC</span>
+                  <span class="chip">Lift</span>
+                  <span class="chip">Electrical</span>
+                </div>
+                <table class="grid">
+                  <thead>
+                    <tr>
+                      <th>Job</th>
+                      <th>Site</th>
+                      <th>Tech</th>
+                      <th>Status</th>
+                      <th>SLA</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="is-sel">
+                      <td class="mono">KD-1842</td>
+                      <td>Pacific Place</td>
+                      <td><span class="who"><i class="av">CY</i> Chan Yiu</span></td>
+                      <td><span class="pill pill-live">On site</span></td>
+                      <td class="mono warn">26m</td>
+                    </tr>
+                    <tr>
+                      <td class="mono">KD-1841</td>
+                      <td>Langham Place</td>
+                      <td><span class="who"><i class="av av-2">WL</i> Wong Lai</span></td>
+                      <td><span class="pill pill-route">En route</span></td>
+                      <td class="mono">48m</td>
+                    </tr>
+                    <tr>
+                      <td class="mono">KD-1838</td>
+                      <td>APM, Kwun Tong</td>
+                      <td><span class="who"><i class="av av-3">KT</i> Ko Tsz</span></td>
+                      <td><span class="pill pill-wait">Queued</span></td>
+                      <td class="mono">1h 12m</td>
+                    </tr>
+                    <tr>
+                      <td class="mono">KD-1831</td>
+                      <td>Citygate</td>
+                      <td><span class="who"><i class="av av-4">IK</i> Ip Ka</span></td>
+                      <td><span class="pill pill-live">On site</span></td>
+                      <td class="mono warn">12m</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </article>
+
+          <article class="portfolio-panel" role="tabpanel" id="panel-queue" aria-labelledby="tab-queue">
+            <div class="win">
+              <div class="win-bar">
+                <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                <span class="win-title">Walk-in queue · Central clinic</span>
+                <span class="win-live"><b></b> 11 waiting</span>
+              </div>
+              <div class="preview preview-queue">
+                <div class="now-serving">
+                  <span class="now-label">Now serving</span>
+                  <strong class="mono">A-024</strong>
+                  <span class="pill pill-live">Room 3 · Dr. Fong</span>
+                </div>
+                <div class="preview-head">
+                  <div>
+                    <h3>Queue · Tue 1 Sep</h3>
+                    <p>Avg wait 18 min · 4 practitioners on floor</p>
+                  </div>
+                  <div class="stats">
+                    <span><b>11</b> waiting</span>
+                    <span><b>2</b> called</span>
+                  </div>
+                </div>
+                <ul class="queue-list">
+                  <li class="is-next">
+                    <span class="mono">A-025</span>
+                    <div>
+                      <strong>Ms. Lau · walk-in</strong>
+                      <em>Checked in 09:04 · est. 6 min</em>
+                    </div>
+                    <span class="pill pill-route">Next</span>
+                  </li>
+                  <li>
+                    <span class="mono">A-026</span>
+                    <div>
+                      <strong>Mr. Yeung · follow-up</strong>
+                      <em>Checked in 09:11 · est. 14 min</em>
+                    </div>
+                    <span class="pill pill-wait">Waiting</span>
+                  </li>
+                  <li>
+                    <span class="mono">B-014</span>
+                    <div>
+                      <strong>Ms. Cheung · new patient</strong>
+                      <em>Checked in 09:18 · est. 22 min</em>
+                    </div>
+                    <span class="pill pill-wait">Waiting</span>
+                  </li>
+                  <li>
+                    <span class="mono">A-023</span>
+                    <div>
+                      <strong>Mr. Ho · completed</strong>
+                      <em>Seen 08:52 · Room 1 · Dr. Tam</em>
+                    </div>
+                    <span class="pill pill-done">Done</span>
+                  </li>
+                </ul>
               </div>
             </div>
           </article>
         </div>
+
+        <div class="portfolio-dots" aria-hidden="true">
+          <button type="button" class="portfolio-dot is-active" aria-current="true" aria-label="Load handoff"></button>
+          <button type="button" class="portfolio-dot" aria-label="Store checklist"></button>
+          <button type="button" class="portfolio-dot" aria-label="Field dispatch"></button>
+          <button type="button" class="portfolio-dot" aria-label="Walk-in queue"></button>
+        </div>
+
+        <p class="portfolio-meta">
+          <span class="portfolio-meta-problem">Cross-dock handoffs tracked in Excel with no proof of receipt.</span>
+          <span class="portfolio-meta-users">Two warehouse leads, eight drivers on phones.</span>
+        </p>
       </div>
     </section>
 
@@ -343,14 +385,14 @@
       </ol>
     </section>
 
-    <section class="scope">
+    <section class="scope" id="scope-panel">
       <h2>What a scope looks like</h2>
       <dl>
-        <div><dt>Problem</dt><dd>HVAC jobs still dispatched on WhatsApp and a shared spreadsheet.</dd></div>
-        <div><dt>Users</dt><dd>One dispatcher at HQ, five techs on phones.</dd></div>
-        <div><dt>Build</dt><dd>Live job board, job status, crew check-in. Web + mobile.</dd></div>
-        <div><dt>Handover</dt><dd>Running app, logins, one-page runbook — your people operate it.</dd></div>
-        <div><dt>Terms</dt><dd>3 weeks. $2,500 USD. Written scope before we build.</dd></div>
+        <div><dt>Problem</dt><dd data-scope="problem">Cross-dock handoffs tracked in a shared Excel file with no photo proof or timestamps.</dd></div>
+        <div><dt>Users</dt><dd data-scope="users">Two warehouse leads, eight drivers on phones.</dd></div>
+        <div><dt>Build</dt><dd data-scope="build">Load handoff board, photo capture, driver check-in. Web + mobile.</dd></div>
+        <div><dt>Handover</dt><dd data-scope="handover">Running app, logins, one-page runbook — your people operate it.</dd></div>
+        <div><dt>Terms</dt><dd data-scope="terms">3 weeks. $2,500 USD. Written scope before we build.</dd></div>
       </dl>
     </section>
 
@@ -365,5 +407,6 @@
     <a href="studio.html">Studio note</a>
     <span>Hong Kong</span>
   </footer>
+  <script src="portfolio.js" defer></script>
 </body>
 </html>
