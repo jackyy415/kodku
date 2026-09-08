@@ -7,3 +7,4 @@ One operational problem, web or mobile, handed over running. If the spec is not 
 Site: https://kodku.com/
 CTA: info@kodku.com
 Studio note: https://kodku.com/studio.html
+Note: https://kodku.com/note-3-week-app.html
