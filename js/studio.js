@@ -12,6 +12,7 @@ const zoneLabelsEl = document.getElementById('zone-labels');
 
 const INTERACT_DIST = 3.2;
 const PLAYER_SPEED = 6;
+const TURN_SPEED = 2.2;
 const WORLD = { w: 28, d: 18, wallH: 3.2 };
 
 const keys = { w: false, a: false, s: false, d: false, up: false, down: false, left: false, right: false };
@@ -380,34 +381,23 @@ function tick() {
   requestAnimationFrame(tick);
   const dt = Math.min(clock.getDelta(), 0.05);
 
-  let inputX = 0;
+  if (keys.a || keys.left) player.rotation.y += TURN_SPEED * dt;
+  if (keys.d || keys.right) player.rotation.y -= TURN_SPEED * dt;
+  if (stick.x < 0) player.rotation.y += TURN_SPEED * dt * -stick.x;
+  else if (stick.x > 0) player.rotation.y -= TURN_SPEED * dt * stick.x;
+
   let inputZ = 0;
   if (keys.w || keys.up) inputZ += 1;
   if (keys.s || keys.down) inputZ -= 1;
-  if (keys.a || keys.left) inputX -= 1;
-  if (keys.d || keys.right) inputX += 1;
-  inputX += stick.x;
   inputZ += stick.y;
 
-  const len = Math.hypot(inputX, inputZ);
-  if (len > 0.01) {
-    inputX /= len;
-    inputZ /= len;
-
+  if (Math.abs(inputZ) > 0.01) {
     const yaw = player.rotation.y;
-    const forwardX = Math.sin(yaw);
-    const forwardZ = Math.cos(yaw);
-    const rightX = Math.cos(yaw);
-    const rightZ = -Math.sin(yaw);
-    const mx = forwardX * inputZ + rightX * inputX;
-    const mz = forwardZ * inputZ + rightZ * inputX;
-
-    if (Math.abs(inputZ) > 0.01) {
-      player.rotation.y = Math.atan2(mx, mz);
-    }
+    const mx = Math.sin(yaw) * inputZ;
+    const mz = Math.cos(yaw) * inputZ;
     player.position.x += mx * PLAYER_SPEED * dt;
     player.position.z += mz * PLAYER_SPEED * dt;
-    if (!tipHidden && len > 0.2) {
+    if (!tipHidden && Math.abs(inputZ) > 0.2) {
       tipEl.classList.add('is-hidden');
       tipHidden = true;
     }
