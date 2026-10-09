@@ -380,21 +380,31 @@ function tick() {
   requestAnimationFrame(tick);
   const dt = Math.min(clock.getDelta(), 0.05);
 
-  let mx = 0;
-  let mz = 0;
-  if (keys.w || keys.up) mz -= 1;
-  if (keys.s || keys.down) mz += 1;
-  if (keys.a || keys.left) mx -= 1;
-  if (keys.d || keys.right) mx += 1;
-  mx += stick.x;
-  mz += stick.y;
+  let inputX = 0;
+  let inputZ = 0;
+  if (keys.w || keys.up) inputZ += 1;
+  if (keys.s || keys.down) inputZ -= 1;
+  if (keys.a || keys.left) inputX -= 1;
+  if (keys.d || keys.right) inputX += 1;
+  inputX += stick.x;
+  inputZ += stick.y;
 
-  const len = Math.hypot(mx, mz);
+  const len = Math.hypot(inputX, inputZ);
   if (len > 0.01) {
-    mx /= len;
-    mz /= len;
-    const yaw = Math.atan2(mx, mz);
-    player.rotation.y = yaw;
+    inputX /= len;
+    inputZ /= len;
+
+    const yaw = player.rotation.y;
+    const forwardX = Math.sin(yaw);
+    const forwardZ = Math.cos(yaw);
+    const rightX = Math.cos(yaw);
+    const rightZ = -Math.sin(yaw);
+    const mx = forwardX * inputZ + rightX * inputX;
+    const mz = forwardZ * inputZ + rightZ * inputX;
+
+    if (Math.abs(inputZ) > 0.01) {
+      player.rotation.y = Math.atan2(mx, mz);
+    }
     player.position.x += mx * PLAYER_SPEED * dt;
     player.position.z += mz * PLAYER_SPEED * dt;
     if (!tipHidden && len > 0.2) {
