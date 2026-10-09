@@ -165,9 +165,13 @@
       <p class="dialogue-text" id="dialogue-text"></p>
       <p class="dialogue-hint"><kbd>E</kbd> or click for next line · <kbd>Esc</kbd> to close</p>
     </div>
-    <div class="stick-zone" id="stick-zone" aria-hidden="true">
-      <div class="stick-base"><div class="stick-knob" id="stick-knob"></div></div>
+    <div class="touch-ui dpad" id="mobile-dpad" role="group" aria-label="Walk controls">
+      <button type="button" class="dpad-btn dpad-up" data-dir="up" aria-label="Forward">↑</button>
+      <button type="button" class="dpad-btn dpad-left" data-dir="left" aria-label="Turn left">←</button>
+      <button type="button" class="dpad-btn dpad-right" data-dir="right" aria-label="Turn right">→</button>
+      <button type="button" class="dpad-btn dpad-down" data-dir="down" aria-label="Back">↓</button>
     </div>
+    <button type="button" class="touch-ui talk-btn" id="talk-btn" aria-label="Talk to staff">Talk</button>
   </div>
 
   <article class="crawler">
