@@ -28,8 +28,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="preload" href="styles.css" as="style">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="css/studio.css">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -137,198 +136,90 @@
     ]
   }
   </script>
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js"
+    }
+  }
+  </script>
 </head>
 <body>
-  <header class="top">
-    <a class="mark" href="index.html">Kodku</a>
-    <a class="mail" href="mailto:info@kodku.com">info@kodku.com</a>
-  </header>
-
-  <main>
-    <section class="hero">
-      <div class="hero-copy">
-        <p class="where">Hong Kong software studio</p>
-        <h1>One production internal app.<br>Three weeks. $2,500.</h1>
-        <p class="lead">Kodku ships real internal apps for Hong Kong SMEs — the tool your ops, admin, booking, or inventory team runs every day. One operational problem, web or mobile, handed over running.</p>
-        <div class="cta-row">
-          <a class="cta" href="mailto:info@kodku.com?subject=Kodku%20internal%20app">Start with Kodku</a>
-        </div>
+  <div class="studio-shell" id="studio-shell">
+    <canvas id="game-canvas" aria-label="Walkable Kodku studio — use WASD to move and talk to staff in IT or Design"></canvas>
+    <div class="zone-labels" id="zone-labels" aria-hidden="true"></div>
+    <div class="studio-hud">
+      <div class="hud-top">
+        <a class="hud-mark" href="index.html">Kodku</a>
+        <p class="hud-offer">One production internal app · 3 weeks · $2,500 USD</p>
+        <a class="hud-mail" href="mailto:info@kodku.com">info@kodku.com</a>
       </div>
-
-      <div class="stage" data-studio="kodku-worklist-v1" aria-label="Shared list product frames">
-        <!-- Frame 1: shared work list -->
-        <article class="win win-board">
-          <div class="win-bar">
-            <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
-            <span class="win-title">Shared list</span>
-            <span class="win-live"><b></b> live · HKT</span>
-          </div>
-          <div class="win-body">
-            <aside class="side">
-              <p class="side-brand">Work</p>
-              <nav>
-                <span class="nav-item">Overview</span>
-                <span class="nav-item is-on">List</span>
-                <span class="nav-item">Archive</span>
-              </nav>
-              <div class="side-foot">
-                <span class="avatar">MC</span>
-                <div>
-                  <strong>May Chen</strong>
-                  <em>Owner</em>
-                </div>
-              </div>
-            </aside>
-            <div class="pane">
-              <div class="pane-head">
-                <div>
-                  <h3>Work list</h3>
-                  <p>Orders and tasks</p>
-                </div>
-              </div>
-              <div class="filters">
-                <span class="search">Search orders and tasks</span>
-              </div>
-              <table class="grid">
-                <thead>
-                  <tr>
-                    <th>Order</th>
-                    <th>Owner</th>
-                    <th>Status</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr class="is-sel">
-                    <td>#1042 Restock coffee beans</td>
-                    <td>May Chen</td>
-                    <td>Doing</td>
-                  </tr>
-                  <tr>
-                    <td>#1048 Confirm Thursday delivery</td>
-                    <td>Sam Lee</td>
-                    <td>To do</td>
-                  </tr>
-                  <tr>
-                    <td>Invoice 318 Send to customer</td>
-                    <td>Alex Wong</td>
-                    <td>Waiting</td>
-                  </tr>
-                  <tr>
-                    <td>#1051 Pack online order</td>
-                    <td>May Chen</td>
-                    <td>Doing</td>
-                  </tr>
-                  <tr>
-                    <td>Stock count, aisle 2</td>
-                    <td>Sam Lee</td>
-                    <td>Done</td>
-                  </tr>
-                  <tr>
-                    <td>New enquiry, reply today</td>
-                    <td>Alex Wong</td>
-                    <td>To do</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </article>
-
-        <div class="frame-row">
-          <!-- Frame 2: detail for selected row -->
-          <article class="win win-job">
-            <div class="win-bar">
-              <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
-              <span class="win-title">#1042 Restock coffee beans</span>
-            </div>
-            <div class="job">
-              <div class="job-hero">
-                <div>
-                  <h3>#1042 Restock coffee beans · Doing · Owner May Chen</h3>
-                </div>
-              </div>
-              <ol class="tl">
-                <li class="is-now">
-                  <span class="mono">Today 11:20</span>
-                  <div>
-                    <strong>Doing</strong>
-                    <p>12 left, ordered 2 cases</p>
-                  </div>
-                </li>
-                <li>
-                  <span class="mono">Today 09:05</span>
-                  <div>
-                    <strong>To do</strong>
-                    <p>supplier price confirmed</p>
-                  </div>
-                </li>
-                <li>
-                  <span class="mono">Yesterday</span>
-                  <div>
-                    <strong>Waiting</strong>
-                    <p>asked supplier for a date</p>
-                  </div>
-                </li>
-              </ol>
-            </div>
-          </article>
-        </div>
+      <p class="hud-tip" id="hud-tip">Walk with WASD. Talk to staff in IT or Design.</p>
+    </div>
+    <p class="prompt-near" id="prompt-near" role="status"></p>
+    <div class="dialogue-panel" id="dialogue-panel" role="dialog" aria-live="polite">
+      <div class="dialogue-head">
+        <span class="dialogue-name" id="dialogue-name"></span>
+        <span class="dialogue-role" id="dialogue-role"></span>
       </div>
-    </section>
+      <p class="dialogue-text" id="dialogue-text"></p>
+      <p class="dialogue-hint"><kbd>E</kbd> or click for next line · <kbd>Esc</kbd> to close</p>
+    </div>
+    <div class="stick-zone" id="stick-zone" aria-hidden="true">
+      <div class="stick-base"><div class="stick-knob" id="stick-knob"></div></div>
+    </div>
+  </div>
 
-    <section class="what">
-      <h2>What you get</h2>
-      <ul>
-        <li>A scoped, working internal app in production in 3 weeks</li>
-        <li>Handover so your people can run it without us in the room</li>
-        <li>Fixed $2,500 USD. Written scope before we build</li>
-      </ul>
-    </section>
+  <article class="crawler">
+    <p class="where" style="margin:0 0 1rem;font-size:0.72rem;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:#4ce0c0;">Hong Kong software studio</p>
+    <h1>One production internal app. Three weeks. $2,500 USD.</h1>
+    <p>Kodku ships real internal apps for Hong Kong SMEs — the tool your ops, admin, booking, or inventory team runs every day. One operational problem, web or mobile, handed over running. Contact <a href="mailto:info@kodku.com">info@kodku.com</a>.</p>
 
-    <section class="how">
-      <h2>How it runs</h2>
-      <ol>
-        <li><span>01</span> You send the workflow. We send a written scope.</li>
-        <li><span>02</span> We build. You see progress. No live-call theatre.</li>
-        <li><span>03</span> Week three: production + handover.</li>
-      </ol>
-    </section>
+    <h2>What you get</h2>
+    <ul>
+      <li>A scoped, working internal app in production in 3 weeks</li>
+      <li>Handover so your people can run it without us in the room</li>
+      <li>Fixed $2,500 USD. Written scope before we build</li>
+    </ul>
 
-    <section class="scope">
-      <h2>What a scope looks like</h2>
-      <dl>
-        <div><dt>Problem</dt><dd>Orders and tasks still live in a shared spreadsheet and chat.</dd></div>
-        <div><dt>Users</dt><dd>The owner and two staff, on the same list.</dd></div>
-        <div><dt>Build</dt><dd>One shared work list: the order or task, who owns it, and its status. Web, plus the same list on a phone.</dd></div>
-        <div><dt>Handover</dt><dd>Running app, logins, one-page runbook — your people operate it.</dd></div>
-        <div><dt>Terms</dt><dd>3 weeks. $2,500 USD. Written scope before we build.</dd></div>
-      </dl>
-    </section>
+    <h2>How it runs</h2>
+    <ol>
+      <li>You send the workflow. We send a written scope.</li>
+      <li>We build. You see progress. No live-call theatre.</li>
+      <li>Week three: production + handover.</li>
+    </ol>
 
-    <section class="scope faq">
-      <h2>FAQ</h2>
-      <dl>
-        <div><dt>What do you get for $2,500?</dt><dd>A scoped, production internal app (web or mobile) in 3 weeks, written scope first, handover so your team runs it. Fixed price.</dd></div>
-        <div><dt>Who is Kodku for?</dt><dd>Hong Kong SMEs that need one internal business app — admin, booking, inventory, or operations — to replace a spreadsheet or ad‑hoc tools. Not a prototype; a real app your staff use daily.</dd></div>
-        <div><dt>How long does a build take?</dt><dd>Three weeks from written scope to production handover.</dd></div>
-        <div><dt>How does the written scope work?</dt><dd>You send the workflow. We send a short written scope before we build. No live-call theatre.</dd></div>
-        <div><dt>What’s discovery ($500) vs the build?</dt><dd>If the problem is still fuzzy, a 3-day written discovery for $500 writes the scope. That is not the product. The product is the app at $2,500.</dd></div>
-        <div><dt>Do you work with Hong Kong teams?</dt><dd>Yes. Kodku is a Hong Kong software studio. We ship internal apps for local SMEs across admin, booking, inventory, and ops. English is the site language; we work bilingual as needed.</dd></div>
-      </dl>
-    </section>
+    <h2>What a scope looks like</h2>
+    <dl>
+      <div><dt>Problem</dt><dd>Orders and tasks still live in a shared spreadsheet and chat.</dd></div>
+      <div><dt>Users</dt><dd>The owner and two staff, on the same list.</dd></div>
+      <div><dt>Build</dt><dd>One shared work list: the order or task, who owns it, and its status. Web, plus the same list on a phone.</dd></div>
+      <div><dt>Handover</dt><dd>Running app, logins, one-page runbook — your people operate it.</dd></div>
+      <div><dt>Terms</dt><dd>3 weeks. $2,500 USD. Written scope before we build.</dd></div>
+    </dl>
 
-    <section class="foot-cta">
-      <p>If the problem is still fuzzy, a 3-day written discovery for $500 writes the scope. That is not the product. The product is the app.</p>
-      <a class="cta" href="mailto:info@kodku.com?subject=Kodku%20internal%20app">info@kodku.com</a>
-    </section>
-  </main>
+    <h2>FAQ</h2>
+    <dl>
+      <div><dt>What do you get for $2,500?</dt><dd>A scoped, production internal app (web or mobile) in 3 weeks, written scope first, handover so your team runs it. Fixed price.</dd></div>
+      <div><dt>Who is Kodku for?</dt><dd>Hong Kong SMEs that need one internal business app — admin, booking, inventory, or operations — to replace a spreadsheet or ad‑hoc tools. Not a prototype; a real app your staff use daily.</dd></div>
+      <div><dt>How long does a build take?</dt><dd>Three weeks from written scope to production handover.</dd></div>
+      <div><dt>How does the written scope work?</dt><dd>You send the workflow. We send a short written scope before we build. No live-call theatre.</dd></div>
+      <div><dt>What’s discovery ($500) vs the build?</dt><dd>If the problem is still fuzzy, a 3-day written discovery for $500 writes the scope. That is not the product. The product is the app at $2,500.</dd></div>
+      <div><dt>Do you work with Hong Kong teams?</dt><dd>Yes. Kodku is a Hong Kong software studio. We ship internal apps for local SMEs across admin, booking, inventory, and ops. English is the site language; we work bilingual as needed.</dd></div>
+    </dl>
 
-  <footer>
+    <p>If the problem is still fuzzy, a 3-day written discovery for $500 writes the scope. That is not the product. The product is the app.</p>
+    <a class="mail-cta" href="mailto:info@kodku.com?subject=Kodku%20internal%20app">info@kodku.com</a>
+  </article>
+
+  <footer class="site-footer">
     <span>Kodku</span>
     <a href="studio.html">Studio note</a>
     <a href="note-hk-sme-internal-apps.html">Internal apps for Hong Kong SMEs</a>
     <a href="note-3-week-app.html">What a 3-week app includes</a>
     <span>Hong Kong</span>
   </footer>
+
+  <script type="module" src="js/studio.js"></script>
 </body>
 </html>
