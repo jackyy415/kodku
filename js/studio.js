@@ -341,7 +341,7 @@ setTimeout(() => {
 }, 12000);
 
 const clock = new THREE.Clock();
-const camOffset = new THREE.Vector3(0, 4.2, 7.5);
+const camOffset = new THREE.Vector3(0, 4.2, -7.5);
 const camLook = new THREE.Vector3();
 
 function clampPlayer() {
