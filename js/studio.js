@@ -16,7 +16,11 @@ const TURN_SPEED = 2.2;
 const WORLD = { w: 28, d: 18, wallH: 3.2 };
 
 const keys = { w: false, a: false, s: false, d: false, up: false, down: false, left: false, right: false };
-let stick = { x: 0, y: 0 };
+
+const mobileControlsMq = window.matchMedia('(pointer: coarse), (max-width: 900px)');
+if (mobileControlsMq.matches) {
+  tipEl.textContent = 'Use the arrows to walk. Talk when near staff.';
+}
 
 const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -249,6 +253,11 @@ function interact() {
   else openDialogue(key);
 }
 
+function tryTalk() {
+  if (dialogueEl.classList.contains('is-open')) advanceDialogue();
+  else interact();
+}
+
 window.addEventListener('keydown', (e) => {
   const k = e.key.toLowerCase();
   if (k === 'w' || e.key === 'ArrowUp') keys.w = keys.up = true;
@@ -257,8 +266,7 @@ window.addEventListener('keydown', (e) => {
   if (k === 'd' || e.key === 'ArrowRight') keys.d = keys.right = true;
   if (k === 'e' || k === ' ') {
     e.preventDefault();
-    if (dialogueEl.classList.contains('is-open')) advanceDialogue();
-    else interact();
+    tryTalk();
   }
   if (k === 'escape') closeDialogue();
 });
@@ -279,59 +287,49 @@ canvas.addEventListener('click', (e) => {
 
 dialogueEl.addEventListener('click', () => advanceDialogue());
 
-const stickZone = document.getElementById('stick-zone');
-const stickKnob = document.getElementById('stick-knob');
-let stickTouchId = null;
-let stickOrigin = { x: 0, y: 0 };
+const talkBtn = document.getElementById('talk-btn');
+const dpadEl = document.getElementById('mobile-dpad');
 
-function stickFromTouch(clientX, clientY) {
-  const max = 36;
-  let dx = clientX - stickOrigin.x;
-  let dy = clientY - stickOrigin.y;
-  const len = Math.hypot(dx, dy);
-  if (len > max) {
-    dx = (dx / len) * max;
-    dy = (dy / len) * max;
-  }
-  stickKnob.style.transform = `translate(${dx}px, ${dy}px)`;
-  stick.x = dx / max;
-  stick.y = -dy / max;
+const DPAD_DIRS = {
+  up: ['w', 'up'],
+  down: ['s', 'down'],
+  left: ['a', 'left'],
+  right: ['d', 'right'],
+};
+
+function setDpadDir(dir, active) {
+  const pair = DPAD_DIRS[dir];
+  if (!pair) return;
+  keys[pair[0]] = active;
+  keys[pair[1]] = active;
 }
 
-stickZone.addEventListener(
-  'touchstart',
-  (e) => {
+dpadEl.querySelectorAll('.dpad-btn').forEach((btn) => {
+  const dir = btn.dataset.dir;
+  const press = (e) => {
     e.preventDefault();
-    const t = e.changedTouches[0];
-    stickTouchId = t.identifier;
-    const r = stickZone.getBoundingClientRect();
-    stickOrigin = { x: r.left + r.width / 2, y: r.top + r.height / 2 };
-    stickFromTouch(t.clientX, t.clientY);
-  },
-  { passive: false }
-);
+    btn.setPointerCapture(e.pointerId);
+    btn.classList.add('is-pressed');
+    setDpadDir(dir, true);
+  };
+  const release = (e) => {
+    e.preventDefault();
+    btn.classList.remove('is-pressed');
+    setDpadDir(dir, false);
+  };
+  btn.addEventListener('pointerdown', press);
+  btn.addEventListener('pointerup', release);
+  btn.addEventListener('pointerleave', release);
+  btn.addEventListener('pointercancel', release);
+  btn.addEventListener('lostpointercapture', release);
+});
 
-stickZone.addEventListener(
-  'touchmove',
-  (e) => {
-    for (const t of e.changedTouches) {
-      if (t.identifier === stickTouchId) {
-        e.preventDefault();
-        stickFromTouch(t.clientX, t.clientY);
-      }
-    }
-  },
-  { passive: false }
-);
-
-function endStick() {
-  stickTouchId = null;
-  stick.x = stick.y = 0;
-  stickKnob.style.transform = '';
-}
-
-stickZone.addEventListener('touchend', endStick);
-stickZone.addEventListener('touchcancel', endStick);
+talkBtn.addEventListener('pointerdown', (e) => e.preventDefault());
+talkBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  if (!talkBtn.classList.contains('is-available')) return;
+  tryTalk();
+});
 
 let tipHidden = false;
 setTimeout(() => {
@@ -383,13 +381,10 @@ function tick() {
 
   if (keys.a || keys.left) player.rotation.y += TURN_SPEED * dt;
   if (keys.d || keys.right) player.rotation.y -= TURN_SPEED * dt;
-  if (stick.x < 0) player.rotation.y += TURN_SPEED * dt * -stick.x;
-  else if (stick.x > 0) player.rotation.y -= TURN_SPEED * dt * stick.x;
 
   let inputZ = 0;
   if (keys.w || keys.up) inputZ += 1;
   if (keys.s || keys.down) inputZ -= 1;
-  inputZ += stick.y;
 
   if (Math.abs(inputZ) > 0.01) {
     const yaw = player.rotation.y;
@@ -406,10 +401,13 @@ function tick() {
   clampPlayer();
 
   const near = nearestNpc();
-  if (near && !dialogueEl.classList.contains('is-open')) {
+  const dialogueOpen = dialogueEl.classList.contains('is-open');
+  talkBtn.classList.toggle('is-available', !!(near || dialogueOpen));
+
+  if (near && !dialogueOpen) {
     promptEl.classList.add('is-visible');
     promptEl.textContent = `Talk to ${NPCS[near.userData.npcKey].name} — E or click`;
-  } else if (dialogueEl.classList.contains('is-open')) {
+  } else if (dialogueOpen) {
     promptEl.classList.add('is-visible');
     promptEl.textContent = 'E or click for next line · Esc to close';
   } else {
