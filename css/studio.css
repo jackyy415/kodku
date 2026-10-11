@@ -18,6 +18,8 @@ a{color:inherit}
   height:min(72vh,720px);
   min-height:420px;
   background:#0a0c0e;
+  -webkit-user-select:none;
+  user-select:none;
 }
 #game-canvas{
   display:block;
@@ -25,6 +27,8 @@ a{color:inherit}
   height:100%;
   touch-action:none;
   cursor:crosshair;
+  -webkit-user-select:none;
+  user-select:none;
 }
 
 .studio-hud{
@@ -34,6 +38,8 @@ a{color:inherit}
   display:flex;
   flex-direction:column;
   justify-content:space-between;
+  -webkit-user-select:none;
+  user-select:none;
 }
 .studio-hud a,.studio-hud button,.dialogue-panel,.touch-ui{pointer-events:auto}
 
