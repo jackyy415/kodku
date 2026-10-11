@@ -17,6 +17,45 @@ const WORLD = { w: 28, d: 18, wallH: 3.2 };
 
 const keys = { w: false, a: false, s: false, d: false, up: false, down: false, left: false, right: false };
 
+const studioShell = document.getElementById('studio-shell');
+
+function isEditableTarget(target) {
+  if (!target || !(target instanceof Element)) return false;
+  return !!target.closest(
+    'input, textarea, select, [contenteditable=""], [contenteditable="true"], [contenteditable="plaintext-only"]'
+  );
+}
+
+function isMovementKey(e) {
+  const k = e.key.toLowerCase();
+  return (
+    k === 'w' ||
+    k === 'a' ||
+    k === 's' ||
+    k === 'd' ||
+    e.key === 'ArrowUp' ||
+    e.key === 'ArrowDown' ||
+    e.key === 'ArrowLeft' ||
+    e.key === 'ArrowRight'
+  );
+}
+
+function preventMovementDefault(e) {
+  if (!isEditableTarget(e.target)) e.preventDefault();
+}
+
+if (canvas && !canvas.hasAttribute('tabindex')) {
+  canvas.tabIndex = 0;
+}
+
+if (studioShell && canvas) {
+  studioShell.addEventListener('pointerdown', (e) => {
+    const link = e.target.closest('a[href]');
+    if (link && /^mailto:/i.test(link.getAttribute('href') || '')) return;
+    canvas.focus({ preventScroll: true });
+  });
+}
+
 const mobileControlsMq = window.matchMedia('(pointer: coarse), (max-width: 900px)');
 if (mobileControlsMq.matches) {
   tipEl.textContent = 'Use the arrows to walk. Talk when near staff.';
@@ -259,6 +298,7 @@ function tryTalk() {
 }
 
 window.addEventListener('keydown', (e) => {
+  if (isMovementKey(e)) preventMovementDefault(e);
   const k = e.key.toLowerCase();
   if (k === 'w' || e.key === 'ArrowUp') keys.w = keys.up = true;
   if (k === 's' || e.key === 'ArrowDown') keys.s = keys.down = true;
@@ -272,6 +312,7 @@ window.addEventListener('keydown', (e) => {
 });
 
 window.addEventListener('keyup', (e) => {
+  if (isMovementKey(e)) preventMovementDefault(e);
   const k = e.key.toLowerCase();
   if (k === 'w' || e.key === 'ArrowUp') keys.w = keys.up = false;
   if (k === 's' || e.key === 'ArrowDown') keys.s = keys.down = false;
