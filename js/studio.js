@@ -13,6 +13,7 @@ const zoneLabelsEl = document.getElementById('zone-labels');
 const INTERACT_DIST = 3.2;
 const PLAYER_SPEED = 6;
 const TURN_SPEED = 2.2;
+const PLAYER_RADIUS = 0.38;
 const WORLD = { w: 28, d: 18, wallH: 3.2 };
 
 const keys = { w: false, a: false, s: false, d: false, up: false, down: false, left: false, right: false };
@@ -133,8 +134,45 @@ wall(WORLD.w, wh, 0.35, 0, 0, hd);
 wall(0.35, wh, WORLD.d, -hw, 0, 0);
 wall(0.35, wh, WORLD.d, hw, 0, 0);
 
-const divider = wall(0.2, wh * 0.85, WORLD.d - 2, 0, 0, 0);
-divider.material = new THREE.MeshStandardMaterial({ color: 0x353c48, roughness: 0.9 });
+const dividerMat = new THREE.MeshStandardMaterial({ color: 0x353c48, roughness: 0.9 });
+const DOOR_WIDTH = 2.8;
+const dividerDepth = WORLD.d - 2;
+const dividerSegDepth = (dividerDepth - DOOR_WIDTH) / 2;
+const dividerSegZ = dividerSegDepth / 2 + DOOR_WIDTH / 2;
+const dividerSouth = wall(0.2, wh * 0.85, dividerSegDepth, 0, 0, -dividerSegZ);
+dividerSouth.material = dividerMat;
+const dividerNorth = wall(0.2, wh * 0.85, dividerSegDepth, 0, 0, dividerSegZ);
+dividerNorth.material = dividerMat;
+
+/** Axis-aligned wall footprints for player collision (x/z only). */
+const wallColliders = [];
+function addWallCollider(cx, halfW, cz, halfD) {
+  wallColliders.push({
+    minX: cx - halfW,
+    maxX: cx + halfW,
+    minZ: cz - halfD,
+    maxZ: cz + halfD,
+  });
+}
+const outerThick = 0.35;
+addWallCollider(0, hw, -hd, outerThick / 2);
+addWallCollider(0, hw, hd, outerThick / 2);
+addWallCollider(-hw, outerThick / 2, 0, hd);
+addWallCollider(hw, outerThick / 2, 0, hd);
+addWallCollider(0, 0.1, -dividerSegZ, dividerSegDepth / 2);
+addWallCollider(0, 0.1, dividerSegZ, dividerSegDepth / 2);
+
+function playerHitsWall(x, z) {
+  const r = PLAYER_RADIUS;
+  for (const box of wallColliders) {
+    const closestX = THREE.MathUtils.clamp(x, box.minX, box.maxX);
+    const closestZ = THREE.MathUtils.clamp(z, box.minZ, box.maxZ);
+    const dx = x - closestX;
+    const dz = z - closestZ;
+    if (dx * dx + dz * dz < r * r) return true;
+  }
+  return false;
+}
 
 const itAccent = 0x3d7ee8;
 const designAccent = 0xe8a84c;
@@ -172,7 +210,7 @@ const visor = new THREE.Mesh(
 );
 visor.position.set(0, 1.25, 0.15);
 player.add(visor);
-player.position.set(0, 0, 7);
+player.position.set(-5, 0, 1);
 scene.add(player);
 
 function makeNpc(key, accent, x, z) {
@@ -384,10 +422,16 @@ const clock = new THREE.Clock();
 const camOffset = new THREE.Vector3(0, 4.2, -7.5);
 const camLook = new THREE.Vector3();
 
-function clampPlayer() {
-  const margin = 0.5;
-  player.position.x = THREE.MathUtils.clamp(player.position.x, -hw + margin, hw - margin);
-  player.position.z = THREE.MathUtils.clamp(player.position.z, -hd + margin, hd - margin);
+function tryMovePlayer(dx, dz) {
+  const px = player.position.x;
+  const pz = player.position.z;
+  if (!playerHitsWall(px + dx, pz + dz)) {
+    player.position.x += dx;
+    player.position.z += dz;
+    return;
+  }
+  if (!playerHitsWall(px + dx, pz)) player.position.x += dx;
+  if (!playerHitsWall(player.position.x, pz + dz)) player.position.z += dz;
 }
 
 function resize() {
@@ -431,15 +475,12 @@ function tick() {
     const yaw = player.rotation.y;
     const mx = Math.sin(yaw) * inputZ;
     const mz = Math.cos(yaw) * inputZ;
-    player.position.x += mx * PLAYER_SPEED * dt;
-    player.position.z += mz * PLAYER_SPEED * dt;
+    tryMovePlayer(mx * PLAYER_SPEED * dt, mz * PLAYER_SPEED * dt);
     if (!tipHidden && Math.abs(inputZ) > 0.2) {
       tipEl.classList.add('is-hidden');
       tipHidden = true;
     }
   }
-
-  clampPlayer();
 
   const near = nearestNpc();
   const dialogueOpen = dialogueEl.classList.contains('is-open');
